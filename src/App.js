@@ -52,7 +52,7 @@ class App extends React.Component {
   fillCell(player, idx) {
     return (
       <div
-        className="cell"
+        className={`cell ${player}`}
         key={idx}
         onClick={this.handleClick.bind(null, idx)}
         data-player={player}

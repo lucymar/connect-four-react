@@ -48,17 +48,10 @@
   height: calc(600px / 7 - 5px);
 }
 
-.playerOne {
-  background: blue;
-}
-.playerTwo {
-  background: red;
+.cell[data-player='playerOne'] {
+  background: yellow;
 }
 
 .cell[data-player='playerTwo'] {
   background: red;
-}
-
-.board > .cell[data-player='playerOne'] {
-  background-image: linear-gradient(#ffffc9, #cece00);
 }
