@@ -31,3 +31,34 @@
     transform: rotate(360deg);
   }
 }
+
+.board {
+  background: black;
+  width: 600px;
+  margin: auto;
+}
+
+.board > .cell {
+  background: white;
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 50%;
+  margin: 2px;
+  width: calc(600px / 7 - 5px);
+  height: calc(600px / 7 - 5px);
+}
+
+.playerOne {
+  background: blue;
+}
+.playerTwo {
+  background: red;
+}
+
+.cell[data-player='playerTwo'] {
+  background: red;
+}
+
+.board > .cell[data-player='playerOne'] {
+  background-image: linear-gradient(#ffffc9, #cece00);
+}
