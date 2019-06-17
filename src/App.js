@@ -1,8 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Grid from './Grid';
-import Cell from './Cell';
 
 const createBoard = () => {
   let board = [];

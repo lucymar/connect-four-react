@@ -50,8 +50,12 @@
 
 .cell[data-player='playerOne'] {
   background: yellow;
+  margin: 2px;
+  padding: 2px;
 }
 
 .cell[data-player='playerTwo'] {
   background: red;
+  margin: 2px;
+  padding: 2px;
 }
