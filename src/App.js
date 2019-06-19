@@ -22,6 +22,30 @@ const switchPlayers = currentPlayer => {
   } else return 'playerOne';
 };
 
+const getGameState = board => {
+  for (let i = 0; i < 6; i++) {
+    for (let j = 0; j < 5; j++) {
+      const index = i * 7 + j;
+      const currentGroup = board.slice(index, index + 4);
+      const result = checkGroupOfFour(currentGroup);
+      if (result !== false) return result;
+    }
+  }
+};
+
+const checkGroupOfFour = values => {
+  if (values.some(value => value.player === null)) {
+    return false;
+  } else if (
+    values[0].player === values[1].player &&
+    values[1].player === values[2].player &&
+    values[2].player === values[3].player
+  ) {
+    return values[1].player;
+  }
+  return false;
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -67,6 +91,9 @@ class App extends React.Component {
     const index = findLowestCell(board, col);
     const boardCopy = board.slice();
     boardCopy[index].player = currentPlayer;
+
+    const gameState = getGameState(boardCopy);
+    console.log('GAMESTATE,', gameState);
     this.setState({
       board: boardCopy,
       currentPlayer: switchPlayers(currentPlayer),
