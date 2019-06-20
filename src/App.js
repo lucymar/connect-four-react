@@ -3,14 +3,6 @@ import './App.css';
 
 const createBoard = () => {
   let board = [];
-  for (let i = 0; i < 42; i++) {
-    board.push({ player: null, index: i });
-  }
-  return board;
-};
-
-const createSecondBoard = () => {
-  let board = [];
   for (let i = 0; i < 6; i++) {
     let row = [];
     for (let j = 0; j < 7; j++) {
@@ -22,7 +14,7 @@ const createSecondBoard = () => {
 };
 
 const findLowestCell = (board, col) => {
-  for (let i = 5; i > 0; i -= 1) {
+  for (let i = 5; i >= 0; i -= 1) {
     console.log('BOARD', board);
 
     if (board[i][col].player === null) {
@@ -122,7 +114,7 @@ class App extends React.Component {
       // playerOne: 1,
       // playerTwo: 2,
       currentPlayer: 'playerOne',
-      board: createSecondBoard(),
+      board: createBoard(),
       gameOver: false,
       result: '',
     };
@@ -162,6 +154,12 @@ class App extends React.Component {
     const board = this.state.board;
     const currentPlayer = this.state.currentPlayer;
     const index = findLowestCell(board, col);
+    if (index === -1) {
+      this.setState({
+        result: 'This is not a valid play',
+      });
+      return;
+    }
     const boardCopy = board.slice();
     console.log('INDEX:', index, 'COL:', col);
     boardCopy[index][col].player = currentPlayer;
