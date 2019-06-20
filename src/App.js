@@ -9,6 +9,18 @@ const createBoard = () => {
   return board;
 };
 
+const createSecondBoard = () => {
+  let board = [];
+  for (let i = 0; i < 6; i++) {
+    let row = [];
+    for (let j = 0; j < 7; j++) {
+      row.push({ player: null });
+    }
+    board.push(row);
+  }
+  return board;
+};
+
 const findLowestCell = (board, col) => {
   for (let i = 35 + col; i >= 0; i -= 7) {
     if (board[i].player === null) return i;
@@ -23,6 +35,7 @@ const switchPlayers = currentPlayer => {
 };
 
 const getGameState = board => {
+  //horizontal
   for (let i = 0; i < 6; i++) {
     for (let j = 0; j < 5; j++) {
       const index = i * 7 + j;
@@ -31,6 +44,11 @@ const getGameState = board => {
       if (result !== false) return result;
     }
   }
+
+  //vertical
+  //for (let i = )
+
+  //check diagonal
 };
 
 const checkGroupOfFour = values => {
@@ -41,6 +59,7 @@ const checkGroupOfFour = values => {
     values[1].player === values[2].player &&
     values[2].player === values[3].player
   ) {
+    console.log('VALUES', values);
     return values[1].player;
   }
   return false;
@@ -53,7 +72,7 @@ class App extends React.Component {
       // playerOne: 1,
       // playerTwo: 2,
       currentPlayer: 'playerOne',
-      board: createBoard(),
+      board: createSecondBoard(),
       gameOver: false,
       result: '',
     };
@@ -65,18 +84,25 @@ class App extends React.Component {
 
   renderCells() {
     const board = this.state.board;
-    return board.map((player, index) => {
-      return this.fillCell(player.player, index);
+    console.log('BOARD', board);
+    return board.map((row, key) => {
+      return row.map((player, idx) => {
+        return this.fillCell(player, idx, key);
+      });
     });
   }
 
-  fillCell(player, idx) {
+  fillCell(player, j, i) {
+    console.log('player', player);
+    console.log('THE I:', i);
+    console.log('THE J:', j);
+
     return (
       <div
-        className={`cell ${player}`}
-        key={idx}
-        onClick={this.handleClick.bind(null, idx)}
-        data-player={player}
+        className={`cell ${player.player}`}
+        // key={idx}
+        // onClick={this.handleClick.bind(null, idx)}
+        data-player={player.player}
       />
     );
   }
