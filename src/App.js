@@ -15,13 +15,10 @@ const createBoard = () => {
 
 const findLowestCell = (board, col) => {
   for (let i = 5; i >= 0; i -= 1) {
-    console.log('BOARD', board);
-
     if (board[i][col].player === null) {
       return i;
     }
   }
-
   return -1;
 };
 
@@ -111,20 +108,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // playerOne: 1,
-      // playerTwo: 2,
       currentPlayer: 'playerOne',
       board: createBoard(),
       gameOver: false,
       result: '',
     };
-    this.fillCell = this.fillCell.bind(this);
-    this.renderCells = this.renderCells.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    //this.dropTile = this.dropTile.bind(this);
   }
 
-  renderCells() {
+  renderCells = () => {
     const board = this.state.board;
     console.log('BOARD', board);
     return board.map((row, key) => {
@@ -132,25 +123,25 @@ class App extends React.Component {
         return this.fillCell(player, idx, key);
       });
     });
-  }
+  };
 
-  fillCell(player, j, i) {
+  fillCell = (player, j, i) => {
     let coordinates = [j, i];
     return (
       <div
         className={`cell ${player.player}`}
         key={coordinates}
-        onClick={this.handleClick.bind(null, coordinates)}
+        onClick={() => this.handleClick(coordinates)}
         data-player={player.player}
       />
     );
-  }
+  };
 
-  handleClick(index) {
-    let col = index[0];
+  handleClick = indices => {
+    let col = indices[0];
     this.dropTile(col);
-  }
-  dropTile(col) {
+  };
+  dropTile = col => {
     const board = this.state.board;
     const currentPlayer = this.state.currentPlayer;
     const index = findLowestCell(board, col);
@@ -171,6 +162,7 @@ class App extends React.Component {
       this.setState({
         board: boardCopy,
         currentPlayer: switchPlayers(currentPlayer),
+        result: '',
       });
     } else {
       if (gameState === 'playerTwo' || gameState === 'playerOne') {
@@ -187,7 +179,7 @@ class App extends React.Component {
         });
       }
     }
-  }
+  };
 
   render() {
     return (
