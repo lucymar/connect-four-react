@@ -186,7 +186,10 @@ class App extends React.Component {
       <div className="App">
         <h2>Connect Four</h2>
         {this.state.result.length > 0 ? (
-          <h4>{this.state.result}!</h4>
+          <div>
+            <h4>{this.state.result}!</h4>
+            <button>Play Again</button>
+          </div>
         ) : (
           <h4>It is {this.state.currentPlayer}'s turn</h4>
         )}
