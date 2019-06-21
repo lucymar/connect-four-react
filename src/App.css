@@ -49,7 +49,7 @@
 }
 
 .cell[data-player='playerOne'] {
-  background: yellow;
+  background: blue;
   margin: 2px;
   padding: 2px;
 }
@@ -58,4 +58,11 @@
   background: red;
   margin: 2px;
   padding: 2px;
+}
+
+.message[data-player='playerOne'] {
+  color: blue;
+}
+.message[data-player='playerTwo'] {
+  color: red;
 }

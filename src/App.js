@@ -180,6 +180,11 @@ class App extends React.Component {
       }
     }
   };
+  handleSubmit = () => {
+    this.setState({
+      board: createBoard(),
+    });
+  };
 
   render() {
     return (
@@ -188,10 +193,12 @@ class App extends React.Component {
         {this.state.result.length > 0 ? (
           <div>
             <h4>{this.state.result}!</h4>
-            <button>Play Again</button>
+            <button onClick={() => this.handleSubmit()}>Play Again</button>
           </div>
         ) : (
-          <h4>It is {this.state.currentPlayer}'s turn</h4>
+          <h4 className="message" data-player={this.state.currentPlayer}>
+            It is {this.state.currentPlayer}'s turn
+          </h4>
         )}
         <div className="board">{this.renderCells()}</div>
       </div>
