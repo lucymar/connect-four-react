@@ -152,11 +152,9 @@ class App extends React.Component {
       return;
     }
     const boardCopy = board.slice();
-    console.log('INDEX:', index, 'COL:', col);
     boardCopy[index][col].player = currentPlayer;
 
     const gameState = getGameState(boardCopy);
-    console.log('board copy', boardCopy);
     console.log('GAMESTATE,', gameState);
     if (gameState === null) {
       this.setState({
