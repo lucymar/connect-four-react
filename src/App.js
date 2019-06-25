@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {
   createBoard,
-  findLowestCell,
+  findLowestEmptyCell,
   switchPlayers,
   getGameState,
 } from './utils';
@@ -47,7 +47,7 @@ class App extends React.Component {
   play = col => {
     const board = this.state.board;
     const currentPlayer = this.state.currentPlayer;
-    const index = findLowestCell(board, col);
+    const index = findLowestEmptyCell(board, col);
     if (index === -1) {
       this.setState({
         result: 'This is not a valid play',
@@ -96,6 +96,7 @@ class App extends React.Component {
           {this.state.result.length > 0 ? <h4>{this.state.result}!</h4> : null}
           <button onClick={() => this.handleSubmit()}>Start Over</button>
         </div>
+        <br />
         {this.state.gameOver === false ? (
           <h4 className="message" data-player={this.state.currentPlayer}>
             It is {this.state.currentPlayer}'s turn

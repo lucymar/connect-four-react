@@ -10,7 +10,7 @@ export const createBoard = () => {
   return board;
 };
 
-export const findLowestCell = (board, col) => {
+export const findLowestEmptyCell = (board, col) => {
   for (let i = 5; i >= 0; i -= 1) {
     if (board[i][col].player === null) {
       return i;
