@@ -85,6 +85,8 @@ class App extends React.Component {
   handleSubmit = () => {
     this.setState({
       board: createBoard(),
+      gameOver: false,
+      result: '',
     });
   };
 
@@ -94,6 +96,7 @@ class App extends React.Component {
         <h2>Connect Four</h2>
         <div>
           {this.state.result.length > 0 ? <h4>{this.state.result}!</h4> : null}
+
           <button onClick={() => this.handleSubmit()}>Start Over</button>
         </div>
         <br />
