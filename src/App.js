@@ -54,7 +54,6 @@ class App extends React.Component {
       });
       return;
     }
-
     const boardCopy = board.slice();
     boardCopy[index][col].player = currentPlayer;
 
